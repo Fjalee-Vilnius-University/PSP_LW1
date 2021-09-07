@@ -6,5 +6,16 @@
         {
             return true;
         }
+
+        public bool IsFirstSpecialCharacter(string str)
+        {
+            return true;
+        }
+
+        public bool IsLastSpecialCharacter(string str)
+        {
+            return true;
+        }
+
     }
 }

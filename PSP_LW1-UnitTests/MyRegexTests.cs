@@ -27,5 +27,45 @@ namespace PSP_LW1_UnitTests
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void IsFirstpecialCharacter_NoSpecialCharacter_Incorrect()
+        {
+            var str = "str";
+
+            var result = _myRegex.IsFirstSpecialCharacter(str);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsFirstSpecialCharacter_HasSpecialCharacter_Correct()
+        {
+            var str = ".str";
+
+            var result = _myRegex.IsFirstSpecialCharacter(str);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsLastSpecialCharacter_NoSpecialCharacter_Incorrect()
+        {
+            var str = "str";
+
+            var result = _myRegex.IsLastSpecialCharacter(str);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsLastSpecialCharacter_HasSpecialCharacter_Correct()
+        {
+            var str = "str.";
+
+            var result = _myRegex.IsLastSpecialCharacter(str);
+
+            Assert.IsTrue(result);
+        }
     }
 }
