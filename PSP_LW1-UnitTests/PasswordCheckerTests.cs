@@ -1,12 +1,17 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PSP_LW1;
+using System.Collections.Generic;
 
 namespace PSP_LW1_UnitTests
 {
     [TestClass]
     public class PasswordValidatorTests
     {
-        readonly PasswordChecker _passwordChecker = new PasswordChecker();
+        readonly PasswordChecker _passwordChecker = new PasswordChecker(6,
+            new List<char>() {
+                '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~'
+            });
+
         readonly string _tenLowercaseCharacter = "mypassword";
 
         [TestMethod]
@@ -14,7 +19,7 @@ namespace PSP_LW1_UnitTests
         {
             var password = _tenLowercaseCharacter + "." + "L";
 
-            var result = _passwordChecker.IsValid(password, 6);
+            var result = _passwordChecker.IsValid(password);
 
             Assert.IsTrue(result);
         }
@@ -24,7 +29,7 @@ namespace PSP_LW1_UnitTests
         {
             var password = "Pass.";
 
-            var result = _passwordChecker.IsValid(password, 6);
+            var result = _passwordChecker.IsValid(password);
 
             Assert.IsFalse(result);
         }
@@ -34,7 +39,7 @@ namespace PSP_LW1_UnitTests
         {
             var password = "Passw.";
 
-            var result = _passwordChecker.IsValid(password, 6);
+            var result = _passwordChecker.IsValid(password);
 
             Assert.IsTrue(result);
         }
@@ -44,7 +49,7 @@ namespace PSP_LW1_UnitTests
         {
             var password = _tenLowercaseCharacter + ".";
 
-            var result = _passwordChecker.IsValid(password, 6);
+            var result = _passwordChecker.IsValid(password);
 
             Assert.IsFalse(result);
         }
@@ -54,7 +59,7 @@ namespace PSP_LW1_UnitTests
         {
             var password = _tenLowercaseCharacter + "L";
 
-            var result = _passwordChecker.IsValid(password, 6);
+            var result = _passwordChecker.IsValid(password);
 
             Assert.IsFalse(result);
         }
@@ -64,7 +69,7 @@ namespace PSP_LW1_UnitTests
         {
             var password = _tenLowercaseCharacter + "(" + "L";
 
-            var result = _passwordChecker.IsValid(password, 6);
+            var result = _passwordChecker.IsValid(password);
 
             Assert.IsFalse(result);
         }
