@@ -9,7 +9,7 @@ namespace PSP_LW1_UnitTests
     {
         readonly PasswordChecker _passwordChecker = new PasswordChecker(6,
             new List<char>() {
-                '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~'
+                '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~', '.'
             });
 
         readonly string _tenLowercaseCharacter = "mypassword";
