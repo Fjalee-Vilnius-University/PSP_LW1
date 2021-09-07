@@ -7,6 +7,7 @@ namespace PSP_LW1_UnitTests
     public class MyRegexTests
     {
         readonly MyRegex _myRegex = new MyRegex();
+        readonly string _simpleStr = "str";
 
         [TestMethod]
         public void IsHaveAtSign_NoAtSign_Incorrect()
@@ -21,9 +22,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveAtSign_WithSymbol_Correct()
         {
-            var str = "str";
-
-            var result = _myRegex.IsHaveAtSymbol(str);
+            var result = _myRegex.IsHaveAtSymbol(_simpleStr);
 
             Assert.IsTrue(result);
         }
@@ -31,9 +30,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsFirstpecialCharacter_NoSpecialCharacter_Incorrect()
         {
-            var str = "str";
-
-            var result = _myRegex.IsFirstSpecialCharacter(str);
+            var result = _myRegex.IsFirstSpecialCharacter(_simpleStr);
 
             Assert.IsFalse(result);
         }
@@ -51,9 +48,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsLastSpecialCharacter_NoSpecialCharacter_Incorrect()
         {
-            var str = "str";
-
-            var result = _myRegex.IsLastSpecialCharacter(str);
+            var result = _myRegex.IsLastSpecialCharacter(_simpleStr);
 
             Assert.IsFalse(result);
         }
@@ -81,9 +76,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveUppercase_NoUppercase_Correct()
         {
-            var str = "str";
-
-            var result = _myRegex.IsHaveUppercase(str);
+            var result = _myRegex.IsHaveUppercase(_simpleStr);
 
             Assert.IsFalse(result);
         }
