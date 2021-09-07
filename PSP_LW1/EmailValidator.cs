@@ -26,5 +26,10 @@ namespace PSP_LW1
         {
             return true;
         }
+
+        public bool IsValid(string email)
+        {
+            return true;
+        }
     }
 }

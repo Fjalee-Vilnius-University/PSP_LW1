@@ -67,5 +67,75 @@ namespace PSP_LW1_UnitTests
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void IsValid_ValidEmail_Correct()
+        {
+            var email = "myEmail@gmail.com";
+
+            var result = _emailValidator.IsValid(email);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsValid_NoAtSymbol_Incorrect()
+        {
+            var email = "myEmailgmail.com";
+
+            var result = _emailValidator.IsValid(email);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsValid_InvalidDomainCharacter_Incorrect()
+        {
+            var email = "myEmail@gm?ail.com";
+
+            var result = _emailValidator.IsValid(email);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsValid_InvalidTDLCharacter_Incorrect()
+        {
+            var email = "myEmail@gmail.c?om";
+
+            var result = _emailValidator.IsValid(email);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsValid_NoTDL_Incorrect()
+        {
+            var email = "myEmail@gmail";
+
+            var result = _emailValidator.IsValid(email);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsValid_NoDomain_Incorrect()
+        {
+            var email = "myEmail@com";
+
+            var result = _emailValidator.IsValid(email);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsValid_HasInvalidCharacter_Incorrect()
+        {
+            var email = "myEm¢ail@gmail.com";
+
+            var result = _emailValidator.IsValid(email);
+
+            Assert.IsFalse(result);
+        }
     }
 }
