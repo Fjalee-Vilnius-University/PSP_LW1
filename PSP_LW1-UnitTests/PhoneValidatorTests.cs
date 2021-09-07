@@ -47,5 +47,27 @@ namespace PSP_LW1_UnitTests
 
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void ChangeShortcutPrefixToDefault_Correct()
+        {
+            var shortcutPrefixPhone = "8" + _correctPhoneWithoutPrefix;
+            var defaultPrefixPhone = "+370" + _correctPhoneWithoutPrefix;
+
+            var result = _passwordChecker.ChangeShortcutPrefixToDefault(shortcutPrefixPhone);
+
+            Assert.IsTrue(defaultPrefixPhone == result);
+        }
+
+        [TestMethod]
+        public void ChangeShortcutPrefixToDefault_WrongShortcutPrefix_Correct()
+        {
+            var shortcutPrefixPhone = "7" + _correctPhoneWithoutPrefix;
+            var defaultPrefixPhone = "+370" + _correctPhoneWithoutPrefix;
+
+            var result = _passwordChecker.ChangeShortcutPrefixToDefault(shortcutPrefixPhone);
+
+            Assert.IsFalse(defaultPrefixPhone == result);
+        }
     }
 }

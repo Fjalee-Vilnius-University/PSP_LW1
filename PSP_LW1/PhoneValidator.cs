@@ -18,6 +18,9 @@
             return true;
         }
 
-
+        public string ChangeShortcutPrefixToDefault(string phone)
+        {
+            return "";
+        }
     }
 }
