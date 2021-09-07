@@ -40,7 +40,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsValid_NoUpperCase_Incorrect()
         {
-            var password = "passw.";
+            var password = "password.";
 
             var result = _passwordChecker.IsValid(password, 6);
 
