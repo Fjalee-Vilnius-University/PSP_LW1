@@ -7,12 +7,14 @@ namespace PSP_LW1_UnitTests
     public class PasswordValidatorTests
     {
         readonly PasswordChecker _passwordChecker = new PasswordChecker();
-        readonly string _correctPass = "Password.";
+        readonly string _tenLowercaseCharacter = "mypassword";
 
         [TestMethod]
         public void IsValid_Password_Correct()
         {
-            var result = _passwordChecker.IsValid(_correctPass, 6);
+            var password = _tenLowercaseCharacter + "." + "L";
+
+            var result = _passwordChecker.IsValid(password, 6);
 
             Assert.IsTrue(result);
         }
@@ -40,7 +42,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsValid_NoUpperCase_Incorrect()
         {
-            var password = "password.";
+            var password = _tenLowercaseCharacter + ".";
 
             var result = _passwordChecker.IsValid(password, 6);
 
@@ -50,7 +52,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsValid_NoSpecialCharacter_Incorrect()
         {
-            var password = "password";
+            var password = _tenLowercaseCharacter + "L";
 
             var result = _passwordChecker.IsValid(password, 6);
 
@@ -60,7 +62,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsValid_WithSpecialCharacterThatIsntAllowed_Incorrect()
         {
-            var password = "password(";
+            var password = _tenLowercaseCharacter + "(" + "L";
 
             var result = _passwordChecker.IsValid(password, 6);
 
