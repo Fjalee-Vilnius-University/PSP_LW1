@@ -2,5 +2,9 @@
 {
     public class PasswordChecker
     {
+        public bool IsValid(string str, int minLength)
+        {
+            return true;
+        }
     }
 }
