@@ -10,14 +10,6 @@ namespace PSP_LW1_UnitTests
         readonly string _simpleStr = "str";
 
         [TestMethod]
-        public void IsHaveAtSign_NoAtSign_Incorrect()
-        {
-            var result = _myRegex.IsHaveAtSymbol(_simpleStr);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
         public void IsHaveAtSign_WithSymbol_Correct()
         {
             var str = "str@";
@@ -28,9 +20,9 @@ namespace PSP_LW1_UnitTests
         }
 
         [TestMethod]
-        public void IsFirstpecialCharacter_NoSpecialCharacter_Incorrect()
+        public void IsHaveAtSign_NoAtSign_Incorrect()
         {
-            var result = _myRegex.IsFirstSpecialCharacter(_simpleStr);
+            var result = _myRegex.IsHaveAtSymbol(_simpleStr);
 
             Assert.IsFalse(result);
         }
@@ -46,9 +38,9 @@ namespace PSP_LW1_UnitTests
         }
 
         [TestMethod]
-        public void IsLastSpecialCharacter_NoSpecialCharacter_Incorrect()
+        public void IsFirstpecialCharacter_NoSpecialCharacter_Incorrect()
         {
-            var result = _myRegex.IsLastSpecialCharacter(_simpleStr);
+            var result = _myRegex.IsFirstSpecialCharacter(_simpleStr);
 
             Assert.IsFalse(result);
         }
@@ -61,6 +53,14 @@ namespace PSP_LW1_UnitTests
             var result = _myRegex.IsLastSpecialCharacter(str);
 
             Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsLastSpecialCharacter_NoSpecialCharacter_Incorrect()
+        {
+            var result = _myRegex.IsLastSpecialCharacter(_simpleStr);
+
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
