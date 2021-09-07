@@ -49,9 +49,36 @@ namespace PSP_LW1_UnitTests
             var listedChars = new List<char>(){
                '£', '¢', '¡'
             };
+
             var result = _myRegex.IsHaveListedCharacters(_simpleStr, listedChars);
 
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsOnlyHaveListedCharacters_NotOnly_Incorrect()
+        {
+            var listedChars = new List<char>(){
+               '1', 'a', '.'
+            };
+            var str = _simpleStr + 'b';
+
+            var result = _myRegex.IsOnlyHaveListedCharacters(str, listedChars);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsOnlyHaveListedCharacters_OnlyListed_Correct()
+        {
+            var listedChars = new List<char>(){
+               '1', 'a', '.'
+            };
+            var str = "a1";
+
+            var result = _myRegex.IsOnlyHaveListedCharacters(str, listedChars);
+
+            Assert.IsTrue(result);
         }
     }
 }

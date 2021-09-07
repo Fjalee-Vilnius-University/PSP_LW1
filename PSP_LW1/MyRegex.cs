@@ -15,5 +15,10 @@ namespace PSP_LW1
         {
             return true;
         }
+
+        public bool IsOnlyHaveListedCharacters(string str, List<char> listedCharacters)
+        {
+            return true;
+        }
     }
 }
