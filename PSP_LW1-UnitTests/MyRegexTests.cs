@@ -12,6 +12,11 @@ namespace PSP_LW1_UnitTests
         readonly List<char> _specialChars = new List<char>(){
                 '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~', '.'
             };
+        readonly List<char> _invalidCharacters = new List<char>(){
+               '£', '¢', '¡'
+            };
+
+
 
         [TestMethod]
         public void IsHaveAtSign_WithSymbol_Correct()
@@ -157,6 +162,24 @@ namespace PSP_LW1_UnitTests
             var str = _simpleStr + "1234567890";
 
             var result = _myRegex.IsOnlyLetters(str);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsHaveInvalidCharacters_Has_Correct()
+        {
+            var str = _simpleStr + "£";
+
+            var result = _myRegex.IsHaveInvalidCharacters(str, _invalidCharacters);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsHaveInvalidCharacters_DoesntHave_Incorrect()
+        {
+            var result = _myRegex.IsHaveInvalidCharacters(_simpleStr, _invalidCharacters);
 
             Assert.IsFalse(result);
         }
