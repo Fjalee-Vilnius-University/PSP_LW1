@@ -11,7 +11,7 @@ namespace PSP_LW1
             return true;
         }
 
-        public bool IsHaveInvalidCharacters(string str, List<char> invalidCharacters)
+        public bool IsHaveListedCharacters(string str, List<char> listedCharacters)
         {
             return true;
         }

@@ -12,9 +12,6 @@ namespace PSP_LW1_UnitTests
         readonly List<char> _specialChars = new List<char>(){
                 '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~', '.'
             };
-        readonly List<char> _invalidCharacters = new List<char>(){
-               '£', '¢', '¡'
-            };
 
         [TestMethod]
         public void IsOnlyNumbers_NumberStr_Correct()
@@ -37,37 +34,25 @@ namespace PSP_LW1_UnitTests
         }
 
         [TestMethod]
-        public void IsOnlyLetters_OnlyLettersStr_Correct()
-        {
-            var result = _myRegex.IsOnlyLetters(_simpleStr);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void IsOnlyLetters_NotOnlyLettersStr_Incorrect()
-        {
-            var str = _simpleStr + "1234567890";
-
-            var result = _myRegex.IsOnlyLetters(str);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
-        public void IsHaveInvalidCharacters_Has_Correct()
+        public void IsHaveListedCharacters_Has_Correct()
         {
             var str = _simpleStr + "£";
+            var listedChars = new List<char>(){
+               '£', '¢', '¡'
+            };
 
-            var result = _myRegex.IsHaveInvalidCharacters(str, _invalidCharacters);
+            var result = _myRegex.IsHaveListedCharacters(str, listedChars);
 
             Assert.IsTrue(result);
         }
 
         [TestMethod]
-        public void IsHaveInvalidCharacters_DoesntHave_Incorrect()
+        public void IsHaveListedCharacters_DoesntHave_Incorrect()
         {
-            var result = _myRegex.IsHaveInvalidCharacters(_simpleStr, _invalidCharacters);
+            var listedChars = new List<char>(){
+               '£', '¢', '¡'
+            };
+            var result = _myRegex.IsHaveListedCharacters(_simpleStr, listedChars);
 
             Assert.IsFalse(result);
         }
