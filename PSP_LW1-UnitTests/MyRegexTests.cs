@@ -12,9 +12,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveAtSign_NoAtSign_Incorrect()
         {
-            var str = "str@";
-
-            var result = _myRegex.IsHaveAtSymbol(str);
+            var result = _myRegex.IsHaveAtSymbol(_simpleStr);
 
             Assert.IsFalse(result);
         }
@@ -22,7 +20,9 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveAtSign_WithSymbol_Correct()
         {
-            var result = _myRegex.IsHaveAtSymbol(_simpleStr);
+            var str = "str@";
+
+            var result = _myRegex.IsHaveAtSymbol(str);
 
             Assert.IsTrue(result);
         }
