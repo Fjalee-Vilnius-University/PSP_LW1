@@ -46,5 +46,25 @@ namespace PSP_LW1_UnitTests
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void IsValid_NoSpecialCharacter_Incorrect()
+        {
+            var password = "password";
+
+            var result = _passwordChecker.IsValid(password, 6);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsValid_WithSpecialCharacterThatIsntAllowed_Incorrect()
+        {
+            var password = "password(";
+
+            var result = _passwordChecker.IsValid(password, 6);
+
+            Assert.IsTrue(result);
+        }
     }
 }
