@@ -21,6 +21,11 @@ namespace PSP_LW1
             return true;
         }
 
+        public bool IsHaveTwoOrMoreConsecutiveSpecialChars(string str, List<char> specialCharacters)
+        {
+            return true;
+        }
+
         public bool IsHaveUppercase(string str)
         {
             return true;

@@ -68,6 +68,16 @@ namespace PSP_LW1_UnitTests
         }
 
         [TestMethod]
+        public void IsHaveTwoOrMoreConsecutiveSpecialChars_HasTwo_Incorrect()
+        {
+            var str = _simpleStr + "%*";
+
+            var result = _myRegex.IsHaveTwoOrMoreConsecutiveSpecialChars(str, _specialChars);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void IsHaveUppercase_WithUppercase_Correct()
         {
             var str = _simpleStr + "U";
