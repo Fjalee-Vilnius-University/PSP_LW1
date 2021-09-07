@@ -106,7 +106,7 @@ namespace PSP_LW1_UnitTests
 
             var result = _myRegex.IsHaveAllowedSpecialCharacter(str);
 
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
