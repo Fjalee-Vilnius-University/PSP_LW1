@@ -10,7 +10,7 @@ namespace PSP_LW1_UnitTests
         readonly MyRegex _myRegex = new MyRegex();
         readonly string _simpleStr = "str";
         readonly List<char> _specialChars = new List<char>(){
-                '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~'
+                '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~', '.'
             };
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsFirstSpecialCharacter_HasSpecialCharacter_Correct()
         {
-            var str = "." + _simpleStr;
+            var str = "%" + _simpleStr;
 
             var result = _myRegex.IsFirstSpecialCharacter(str, _specialChars);
 
@@ -52,7 +52,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsLastSpecialCharacter_HasSpecialCharacter_Correct()
         {
-            var str = _simpleStr + ".";
+            var str = _simpleStr + "%";
 
             var result = _myRegex.IsLastSpecialCharacter(str, _specialChars);
 
