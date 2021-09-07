@@ -11,11 +11,6 @@ namespace PSP_LW1
             return true;
         }
 
-        public bool IsOnlyLetters(string str)
-        {
-            return true;
-        }
-
         public bool IsHaveInvalidCharacters(string str, List<char> invalidCharacters)
         {
             return true;
