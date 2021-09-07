@@ -16,26 +16,6 @@ namespace PSP_LW1_UnitTests
                '£', '¢', '¡'
             };
 
-
-
-        [TestMethod]
-        public void IsHaveAtSign_WithSymbol_Correct()
-        {
-            var str = _simpleStr + "@";
-
-            var result = _myRegex.IsHaveAtSymbol(str);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void IsHaveAtSign_NoAtSign_Incorrect()
-        {
-            var result = _myRegex.IsHaveAtSymbol(_simpleStr);
-
-            Assert.IsFalse(result);
-        }
-
         [TestMethod]
         public void IsFirstSpecialCharacter_HasSpecialCharacter_Correct()
         {
