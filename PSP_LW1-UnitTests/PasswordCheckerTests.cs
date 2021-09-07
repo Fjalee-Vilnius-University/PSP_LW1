@@ -36,5 +36,15 @@ namespace PSP_LW1_UnitTests
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void IsValid_NoUpperCase_Incorrect()
+        {
+            var password = "passw.";
+
+            var result = _passwordChecker.IsValid(password, 6);
+
+            Assert.IsTrue(result);
+        }
     }
 }
