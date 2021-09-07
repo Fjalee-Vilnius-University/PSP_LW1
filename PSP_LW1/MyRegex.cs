@@ -33,5 +33,10 @@
         {
             return true;
         }
+
+        public bool IsOnlyLetters(string str)
+        {
+            return true;
+        }
     }
 }

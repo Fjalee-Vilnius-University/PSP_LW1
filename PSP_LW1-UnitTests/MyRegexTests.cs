@@ -128,5 +128,23 @@ namespace PSP_LW1_UnitTests
 
             Assert.IsFalse(result);
         }
+
+        [TestMethod]
+        public void IsOnlyLetters_OnlyLettersStr_Correct()
+        {
+            var result = _myRegex.IsOnlyLetters(_simpleStr);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsOnlyLetters_NotOnlyLettersStr_Incorrect()
+        {
+            var str = _simpleStr + "1234567890";
+
+            var result = _myRegex.IsOnlyLetters(str);
+
+            Assert.IsFalse(result);
+        }
     }
 }
