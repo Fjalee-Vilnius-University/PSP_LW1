@@ -28,5 +28,10 @@
         {
             return true;
         }
+
+        public bool IsOnlyNumbers(string str)
+        {
+            return true;
+        }
     }
 }

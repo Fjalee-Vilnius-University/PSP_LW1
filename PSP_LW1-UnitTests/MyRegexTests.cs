@@ -12,7 +12,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveAtSign_WithSymbol_Correct()
         {
-            var str = "str@";
+            var str = _simpleStr + "@";
 
             var result = _myRegex.IsHaveAtSymbol(str);
 
@@ -30,7 +30,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsFirstSpecialCharacter_HasSpecialCharacter_Correct()
         {
-            var str = ".str";
+            var str = "." + _simpleStr;
 
             var result = _myRegex.IsFirstSpecialCharacter(str);
 
@@ -48,7 +48,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsLastSpecialCharacter_HasSpecialCharacter_Correct()
         {
-            var str = "str.";
+            var str = _simpleStr + ".";
 
             var result = _myRegex.IsLastSpecialCharacter(str);
 
@@ -66,7 +66,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveUppercase_WithUppercase_Correct()
         {
-            var str = "Ustr";
+            var str = _simpleStr + "U";
 
             var result = _myRegex.IsHaveUppercase(str);
 
@@ -84,7 +84,7 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveSpecialCharacter_HasSpecialSymbol_Correct()
         {
-            var str = $"%str";
+            var str = _simpleStr + "%";
 
             var result = _myRegex.IsHaveAllowedSpecialCharacter(str);
 
@@ -102,11 +102,31 @@ namespace PSP_LW1_UnitTests
         [TestMethod]
         public void IsHaveSpecialCharacter_HasNotAllowedSpecialSymbol_Incorrect()
         {
-            var str = $"(str";
+            var str = _simpleStr + "(";
 
             var result = _myRegex.IsHaveAllowedSpecialCharacter(str);
 
             Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsOnlyNumbers_NumberStr_Correct()
+        {
+            var str = "1234567890";
+
+            var result = _myRegex.IsOnlyNumbers(str);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void IsOnlyNumbers_NotOnlyNumberStr_Incorrect()
+        {
+            var str = _simpleStr + "1234567890";
+
+            var result = _myRegex.IsOnlyNumbers(str);
+
+            Assert.IsFalse(result);
         }
     }
 }
