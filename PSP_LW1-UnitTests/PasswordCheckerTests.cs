@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace PSP_LW1_UnitTests
 {
     [TestClass]
-    public class UnitTest1
+    public class PasswordValidatorTests
     {
         [TestMethod]
         public void TestMethod1()
