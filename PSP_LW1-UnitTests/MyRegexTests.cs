@@ -82,11 +82,31 @@ namespace PSP_LW1_UnitTests
         }
 
         [TestMethod]
+        public void IsHaveSpecialCharacter_HasSpecialSymbol_Correct()
+        {
+            var str = $"%str";
+
+            var result = _myRegex.IsHaveAllowedSpecialCharacter(str);
+
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
         public void IsHaveSpecialCharacter_NoSpecialSymbol_Incorrect()
         {
-            var result = _myRegex.IsHaveSpecialCharacter(_simpleStr);
+            var result = _myRegex.IsHaveAllowedSpecialCharacter(_simpleStr);
 
             Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsHaveSpecialCharacter_HasNotAllowedSpecialSymbol_Incorrect()
+        {
+            var str = $"(str";
+
+            var result = _myRegex.IsHaveAllowedSpecialCharacter(str);
+
+            Assert.IsTrue(result);
         }
     }
 }
