@@ -1,4 +1,6 @@
-﻿namespace PSP_LW1
+﻿using System.Collections.Generic;
+
+namespace PSP_LW1
 {
     public class MyRegex
     {
@@ -9,12 +11,12 @@
             return true;
         }
 
-        public bool IsFirstSpecialCharacter(string str)
+        public bool IsFirstSpecialCharacter(string str, List<char> specialCharacters)
         {
             return true;
         }
 
-        public bool IsLastSpecialCharacter(string str)
+        public bool IsLastSpecialCharacter(string str, List<char> specialCharacters)
         {
             return true;
         }
