@@ -9,9 +9,6 @@ namespace PSP_LW1_UnitTests
     {
         readonly MyRegex _myRegex = new MyRegex();
         readonly string _simpleStr = "str";
-        readonly List<char> _specialChars = new List<char>(){
-                '&', '!', '#', '$', '%', '\'', '*', '+', '-', '/', '=', '?', '^', '_', '`', '{', '|', '}', '~', '.'
-            };
 
         [TestMethod]
         public void IsOnlyNumbers_NumberStr_Correct()
