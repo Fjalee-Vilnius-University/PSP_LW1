@@ -17,5 +17,9 @@
             return true;
         }
 
+        public bool IsHaveUppercase(string str)
+        {
+            return true;
+        }
     }
 }
