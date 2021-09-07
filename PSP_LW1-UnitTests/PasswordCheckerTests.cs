@@ -44,7 +44,7 @@ namespace PSP_LW1_UnitTests
 
             var result = _passwordChecker.IsValid(password, 6);
 
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -54,7 +54,7 @@ namespace PSP_LW1_UnitTests
 
             var result = _passwordChecker.IsValid(password, 6);
 
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -64,7 +64,7 @@ namespace PSP_LW1_UnitTests
 
             var result = _passwordChecker.IsValid(password, 6);
 
-            Assert.IsTrue(result);
+            Assert.IsFalse(result);
         }
     }
 }
