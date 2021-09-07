@@ -11,26 +11,6 @@ namespace PSP_LW1_UnitTests
         readonly string _simpleStr = "str";
 
         [TestMethod]
-        public void IsOnlyNumbers_NumberStr_Correct()
-        {
-            var str = "1234567890";
-
-            var result = _myRegex.IsOnlyNumbers(str);
-
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        public void IsOnlyNumbers_NotOnlyNumberStr_Incorrect()
-        {
-            var str = _simpleStr + "1234567890";
-
-            var result = _myRegex.IsOnlyNumbers(str);
-
-            Assert.IsFalse(result);
-        }
-
-        [TestMethod]
         public void IsHaveListedCharacters_Has_Correct()
         {
             var str = _simpleStr + "£";

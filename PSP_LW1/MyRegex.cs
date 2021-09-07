@@ -6,11 +6,6 @@ namespace PSP_LW1
     {
         string _allowedSpecialSymbols = System.Configuration.ConfigurationManager.AppSettings["AllowedSpecialSymbols"];
 
-        public bool IsOnlyNumbers(string str)
-        {
-            return true;
-        }
-
         public bool IsHaveListedCharacters(string str, List<char> listedCharacters)
         {
             return true;
