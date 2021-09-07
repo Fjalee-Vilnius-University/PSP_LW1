@@ -74,9 +74,17 @@ namespace PSP_LW1_UnitTests
         }
 
         [TestMethod]
-        public void IsHaveUppercase_NoUppercase_Correct()
+        public void IsHaveUppercase_NoUppercase_Incorrect()
         {
             var result = _myRegex.IsHaveUppercase(_simpleStr);
+
+            Assert.IsFalse(result);
+        }
+
+        [TestMethod]
+        public void IsHaveSpecialCharacter_NoSpecialSymbol_Incorrect()
+        {
+            var result = _myRegex.IsHaveSpecialCharacter(_simpleStr);
 
             Assert.IsFalse(result);
         }
