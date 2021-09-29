@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PSP_LW1;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace PSP_LW1_UnitTests
 
         public EmailValidatorTests()
         {
-            _emailValidator = new EmailValidator(_specialChars, _invalidChars);
+            _emailValidator = new EmailValidator(_invalidChars, _specialChars);
         }
 
         [TestMethod]
@@ -44,7 +45,6 @@ namespace PSP_LW1_UnitTests
         public void IsLastSpecialCharacter_HasSpecialCharacter_Correct()
         {
             var str = _simpleStr + "%";
-
             var result = _emailValidator.IsLastSpecialCharacter(str);
 
             Assert.IsTrue(result);
