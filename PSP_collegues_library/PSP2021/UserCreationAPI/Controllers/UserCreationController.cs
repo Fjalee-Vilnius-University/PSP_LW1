@@ -6,10 +6,16 @@ namespace UserCreationAPI.Controllers
     [Route("api/[controller]")]
     public class UserCreationController : ControllerBase
     {
-        [HttpGet()]
-        public void Test()
+        [HttpGet]
+        public void Get()
         {
-            var temp = 0;
+            var x = 0;
+        }
+
+        [HttpPost]
+        public void CreateUser()
+        {
+
         }
     }
 }
