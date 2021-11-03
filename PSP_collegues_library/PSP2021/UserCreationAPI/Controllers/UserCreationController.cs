@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UserCreationApi.Dto;
 
 namespace UserCreationAPI.Controllers
 {
@@ -13,9 +14,9 @@ namespace UserCreationAPI.Controllers
         }
 
         [HttpPost]
-        public void CreateUser()
+        public void CreateUser([FromBody] UserDto user)
         {
-
+            var x = 0;
         }
     }
 }
