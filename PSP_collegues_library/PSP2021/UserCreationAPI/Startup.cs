@@ -1,15 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using UserCreationApi.ValidatorAdapters;
 
 namespace UserCreationApi
 {
@@ -26,6 +20,9 @@ namespace UserCreationApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IPhoneValidator, PhoneValidatorAdapter>();
+            services.AddSingleton<IEmailValidator, EmailValidatorAdapter>();
+            services.AddSingleton<IPasswordValidator, PasswordValidatorAdapter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
