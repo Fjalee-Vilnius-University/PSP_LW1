@@ -19,12 +19,6 @@ namespace UserCreationAPI.Controllers
             _phoneValidator = phoneValidator;
         }
 
-        [HttpGet]
-        public void Get()
-        {
-            var x = 0;
-        }
-
         [HttpPost]
         public IActionResult CreateUser([FromBody] UserDto user)
         {
