@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Database;
+using Database.Entities;
+using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using UserCreationApi;
 using UserCreationApi.Dto;
 
@@ -11,12 +15,17 @@ namespace UserCreationAPI.Controllers
         private readonly IEmailValidator _emailValidator;
         private readonly IPasswordValidator _passwordValidator;
         private readonly IPhoneValidator _phoneValidator;
+        private readonly AppDbContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public UserCreationController(IEmailValidator emailValidator, IPasswordValidator passwordValidator, IPhoneValidator phoneValidator)
+        public UserCreationController(IEmailValidator emailValidator, IPasswordValidator passwordValidator, IPhoneValidator phoneValidator
+            , AppDbContext dbContext, IMapper mapper)
         {
             _emailValidator = emailValidator;
             _passwordValidator = passwordValidator;
             _phoneValidator = phoneValidator;
+            _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -26,9 +35,18 @@ namespace UserCreationAPI.Controllers
                 && _passwordValidator.IsValid(user.Password)
                 && _phoneValidator.IsValid(user.PhoneNumber))
             {
-                //add to db
+                try
+                {
+                    _dbContext.Users.Add(_mapper.Map<User>(user));
+                    _dbContext.Users.Add(_mapper.Map<User>(user));
+                    _dbContext.Users.Select(x => x).ToList();
+                    return Ok(user);
+                }
+                catch
+                {
 
-                return Ok(user);
+                    return StatusCode(500);
+                }
             }
             else
             {
