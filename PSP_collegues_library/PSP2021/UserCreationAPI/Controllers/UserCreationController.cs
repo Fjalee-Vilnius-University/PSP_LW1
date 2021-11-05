@@ -26,19 +26,20 @@ namespace UserCreationAPI.Controllers
         }
 
         [HttpPost]
-        public void CreateUser([FromBody] UserDto user)
+        public IActionResult CreateUser([FromBody] UserDto user)
         {
             if (_emailValidator.IsValid(user.Email)
                 && _passwordValidator.IsValid(user.Password)
                 && _phoneValidator.IsValid(user.PhoneNumber))
             {
                 //add to db
+
+                return Ok(user);
             }
             else
             {
-
+                return BadRequest();
             }
-
         }
     }
 }
