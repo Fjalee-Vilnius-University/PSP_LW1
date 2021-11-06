@@ -10,23 +10,28 @@ namespace UnitTests
     public class UserServiceUnitTest
     {
         [Theory]
-        [AutoDomainData]
-        public void IsValid_Valid_Correct(UserDto user, [Frozen] Mock<IEmailValidator> emailValidatorMock,
+        [InlineAutoMoqData(true, true, true)]
+        [InlineAutoMoqData(false, true, true)]
+        [InlineAutoMoqData(true, false, true)]
+        [InlineAutoMoqData(true, true, false)]
+        public void IsValid_Valid_Correct(bool isValidEmail, bool isValidPassword, bool isValidPhoneNumber, UserDto user, [Frozen] Mock<IEmailValidator> emailValidatorMock,
             [Frozen] Mock<IPasswordValidator> passwordValidatorMock, [Frozen] Mock<IPhoneValidator> phoneNumberValidatorMock, UserService sut)
         {
             emailValidatorMock
                 .Setup(e => e.IsValid(It.IsAny<string>()))
-                .Returns(true);
+                .Returns(isValidEmail);
             passwordValidatorMock
                 .Setup(p => p.IsValid(It.IsAny<string>()))
-                .Returns(true);
+                .Returns(isValidPassword);
             phoneNumberValidatorMock
                 .Setup(t => t.IsValid(It.IsAny<string>()))
-                .Returns(true);
+                .Returns(isValidPhoneNumber);
 
             var result = sut.IsValid(user);
 
-            Assert.True(result);
+            var expectedResult = isValidEmail && isValidPassword && isValidPhoneNumber;
+
+            Assert.Equal(result, expectedResult);
         }
     }
 }

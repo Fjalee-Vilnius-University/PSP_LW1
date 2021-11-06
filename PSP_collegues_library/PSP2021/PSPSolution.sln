@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PSP.TestsFixed", "PSP.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserCreationApi", "UserCreationApi\UserCreationApi.csproj", "{1943422C-DF57-46FD-BA20-114B53623082}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{B9DE7E40-6E12-4585-889E-92A9FB2FECB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{B9DE7E40-6E12-4585-889E-92A9FB2FECB9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserCreation.UnitTests", "UserCreation.UnitTests\UserCreation.UnitTests.csproj", "{67FE84A7-C8A3-4F33-812C-546E684047D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{B9DE7E40-6E12-4585-889E-92A9FB2FECB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9DE7E40-6E12-4585-889E-92A9FB2FECB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9DE7E40-6E12-4585-889E-92A9FB2FECB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67FE84A7-C8A3-4F33-812C-546E684047D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FE84A7-C8A3-4F33-812C-546E684047D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FE84A7-C8A3-4F33-812C-546E684047D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FE84A7-C8A3-4F33-812C-546E684047D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

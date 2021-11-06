@@ -13,6 +13,12 @@ namespace UnitTests
             return f;
         }
 
+
         public AutoDomainDataAttribute() : base(FixtureFactory) { }
+    }
+
+    public class InlineAutoMoqDataAttribute : InlineAutoDataAttribute
+    {
+        public InlineAutoMoqDataAttribute(params object[] objects) : base(new AutoDomainDataAttribute(), objects) { }
     }
 }
