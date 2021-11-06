@@ -4,6 +4,7 @@ namespace UserCreationApi.BusinessLogic
 {
     public interface IUserService
     {
-        public bool AddUser(UserDto user);
+        public void AddUser(UserDto user);
+        public bool IsValid(UserDto user);
     }
 }

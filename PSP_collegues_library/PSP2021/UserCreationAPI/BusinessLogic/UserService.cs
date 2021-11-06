@@ -25,21 +25,19 @@ namespace UserCreationApi.BusinessLogic
             _phoneValidator = phoneValidator;
         }
 
-        public bool AddUser(UserDto user)
+        public void AddUser(UserDto user)
         {
-            if (_emailValidator.IsValid(user.Email)
-                && _passwordValidator.IsValid(user.Password)
-                && _phoneValidator.IsValid(user.PhoneNumber))
-            {
-                _dbContext.Users.Add(_mapper.Map<User>(user));
-                _dbContext.Users.Add(_mapper.Map<User>(user));
-                _dbContext.Users.Select(x => x).ToList();
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            _dbContext.Users.Add(_mapper.Map<User>(user));
+            _dbContext.Users.Add(_mapper.Map<User>(user));
+            _dbContext.Users.Select(x => x).ToList();
+        }
+
+        public bool IsValid(UserDto user)
+        {
+            var isValidEmail = _emailValidator.IsValid(user.Email);
+            var isValidPassword = _passwordValidator.IsValid(user.Password);
+            var isValidPhoneNumber = _phoneValidator.IsValid(user.PhoneNumber);
+            return isValidEmail && isValidPassword && isValidPhoneNumber;
         }
     }
 }

@@ -18,24 +18,21 @@ namespace UserCreationAPI.Controllers
         [HttpPost]
         public IActionResult CreateUser([FromBody] UserDto user)
         {
-            try
+            var validated = _userService.IsValid(user);
+            if (validated)
             {
-                var added = _userService.AddUser(user);
-
-                if (added)
+                try
                 {
+                    _userService.AddUser(user);
                     return Ok(user);
                 }
-                else
+                catch
                 {
-                    return BadRequest();
+                    return StatusCode(500);
+
                 }
             }
-            catch
-            {
-                return StatusCode(500);
-
-            }
+            return BadRequest();
         }
     }
 }
