@@ -15,6 +15,26 @@ namespace UserCreationAPI.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        public IActionResult GetUser(int id)
+        {
+            try
+            {
+                var user = _userService.GetUser(id);
+
+                if (user != null)
+                {
+                    return Ok(user);
+                }
+                return BadRequest();
+            }
+            catch
+            {
+                return StatusCode(500);
+
+            }
+        }
+
         [HttpPost]
         public IActionResult CreateUser([FromBody] UserDto user)
         {

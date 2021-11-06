@@ -30,6 +30,11 @@ namespace UserCreationApi.BusinessLogic
             return addedUser.Entity;
         }
 
+        public User GetUser(int id)
+        {
+            return _dbContext.Users.Find(id);
+        }
+
         public bool IsValid(UserDto user)
         {
             var isValidEmail = _emailValidator.IsValid(user.Email);
