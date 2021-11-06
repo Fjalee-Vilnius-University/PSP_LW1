@@ -35,6 +35,16 @@ namespace UserCreationApi.BusinessLogic
             return _dbContext.Users.Find(id);
         }
 
+        public User DeleteUser(int id)
+        {
+            var user = new User() { UserId = id };
+            _dbContext.Users.Attach(user);
+
+            var removedUser = _dbContext.Users.Remove(user);
+            _dbContext.SaveChanges();
+            return removedUser.Entity;
+        }
+
         public bool IsValid(UserDto user)
         {
             var isValidEmail = _emailValidator.IsValid(user.Email);

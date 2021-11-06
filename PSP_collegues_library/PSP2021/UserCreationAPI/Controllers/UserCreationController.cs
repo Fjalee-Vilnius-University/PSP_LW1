@@ -54,5 +54,25 @@ namespace UserCreationAPI.Controllers
             }
             return BadRequest();
         }
+
+        [HttpDelete]
+        public IActionResult DeleteUser(int id)
+        {
+            try
+            {
+                var user = _userService.DeleteUser(id);
+
+                if (user != null)
+                {
+                    return Ok();
+                }
+                return BadRequest();
+            }
+            catch
+            {
+                return StatusCode(500);
+
+            }
+        }
     }
 }
