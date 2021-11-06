@@ -45,6 +45,29 @@ namespace UserCreationApi.BusinessLogic
             return removedUser.Entity;
         }
 
+        public User UpdateUser(int id, UserDto newUser)
+        {
+            var userToUpdate = _dbContext.Users.Find(id);
+            _dbContext.Users.Attach(userToUpdate);
+
+
+            if (userToUpdate == null)
+            {
+                return null;
+            }
+
+            userToUpdate.Name = newUser.Name;
+            userToUpdate.Surname = newUser.Surname;
+            userToUpdate.PhoneNumber = newUser.PhoneNumber;
+            userToUpdate.Email = newUser.Email;
+            userToUpdate.Address = newUser.Address;
+            userToUpdate.Password = newUser.Password;
+
+            _dbContext.SaveChanges();
+
+            return userToUpdate;
+        }
+
         public bool IsValid(UserDto user)
         {
             var isValidEmail = _emailValidator.IsValid(user.Email);
