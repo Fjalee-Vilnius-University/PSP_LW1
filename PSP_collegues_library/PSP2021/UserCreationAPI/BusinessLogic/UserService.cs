@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Database;
 using Database.Entities;
-using System.Linq;
 using UserCreationApi.Dto;
 
 namespace UserCreationApi.BusinessLogic
@@ -25,11 +24,10 @@ namespace UserCreationApi.BusinessLogic
             _phoneValidator = phoneValidator;
         }
 
-        public void AddUser(UserDto user)
+        public User AddUser(UserDto user)
         {
-            _dbContext.Users.Add(_mapper.Map<User>(user));
-            _dbContext.Users.Add(_mapper.Map<User>(user));
-            _dbContext.Users.Select(x => x).ToList();
+            var addedUser = _dbContext.Users.Add(_mapper.Map<User>(user));
+            return addedUser.Entity;
         }
 
         public bool IsValid(UserDto user)

@@ -23,8 +23,8 @@ namespace UserCreationAPI.Controllers
             {
                 try
                 {
-                    _userService.AddUser(user);
-                    return Ok(user);
+                    var addedUser = _userService.AddUser(user);
+                    return Ok(addedUser);
                 }
                 catch
                 {
