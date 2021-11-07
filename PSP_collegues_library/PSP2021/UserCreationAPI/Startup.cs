@@ -1,4 +1,5 @@
 using Database;
+using Database.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ namespace UserCreationApi
             services.AddSingleton<IEmailValidator, EmailValidatorAdapter>();
             services.AddSingleton<IPasswordValidator, PasswordValidatorAdapter>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
         }

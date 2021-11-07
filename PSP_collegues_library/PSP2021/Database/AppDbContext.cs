@@ -13,7 +13,7 @@ namespace Database
             modelBuilder.Entity<User>().HasData(
                 new User
                 {
-                    Id = 1,
+                    UserId = 1,
                     Name = "TestName1",
                     Surname = "TestSurame1",
                     PhoneNumber = "+37061111111",
@@ -24,7 +24,7 @@ namespace Database
                 },
                 new User
                 {
-                    Id = 2,
+                    UserId = 2,
                     Name = "TestName2",
                     Surname = "TestSurame2",
                     PhoneNumber = "+37062222222",
@@ -35,7 +35,18 @@ namespace Database
                 },
                 new User
                 {
-                    Id = 3,
+                    UserId = 3,
+                    Name = "TestName3",
+                    Surname = "TestSurame3",
+                    PhoneNumber = "+37063333333",
+                    Email = "TestEmail3@gmail.com",
+                    Address = "TestADress3",
+                    Password = "TestPassword3."
+
+                },
+                new User
+                {
+                    UserId = 4,
                     Name = "TestName3",
                     Surname = "TestSurame3",
                     PhoneNumber = "+37063333333",

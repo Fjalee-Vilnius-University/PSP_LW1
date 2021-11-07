@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Database.Repository;
+using Microsoft.AspNetCore.Mvc;
 using UserCreationApi.BusinessLogic;
-using UserCreationApi.Dto;
 
 namespace UserCreationAPI.Controllers
 {
@@ -9,95 +9,111 @@ namespace UserCreationAPI.Controllers
     public class UserCreationController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IUserRepository _userRepository;
 
-        public UserCreationController(IUserService userService)
+        public UserCreationController(IUserService userService, IUserRepository userRepository)
         {
             _userService = userService;
+            _userRepository = userRepository;
         }
 
         [HttpGet]
-        public IActionResult GetUser(int id)
+        public IActionResult GetUser()
         {
             try
             {
-                var user = _userService.GetUser(id);
-
-                if (user != null)
-                {
-                    return Ok(user);
-                }
-                return BadRequest();
+                var users = _userRepository.ReadAllUsers();
+                return Ok(users);
             }
             catch
             {
                 return StatusCode(500);
-
             }
         }
 
-        [HttpPost]
-        public IActionResult CreateUser([FromBody] UserDto user)
-        {
-            var validated = _userService.IsValid(user);
-            if (validated)
-            {
-                try
-                {
-                    var addedUser = _userService.AddUser(user);
-                    return Ok(addedUser);
-                }
-                catch
-                {
-                    return StatusCode(500);
+        //[HttpGet]
+        //public IActionResult GetUser(int id)
+        //{
+        //    try
+        //    {
+        //        var user = _userService.GetUser(id);
 
-                }
-            }
-            return BadRequest();
-        }
+        //        if (user != null)
+        //        {
+        //            return Ok(user);
+        //        }
+        //        return BadRequest();
+        //    }
+        //    catch
+        //    {
+        //        return StatusCode(500);
 
-        [HttpDelete]
-        public IActionResult DeleteUser(int id)
-        {
-            try
-            {
-                var user = _userService.DeleteUser(id);
+        //    }
+        //}
 
-                if (user != null)
-                {
-                    return Ok();
-                }
-                return BadRequest();
-            }
-            catch
-            {
-                return StatusCode(500);
+        //[HttpPost]
+        //public IActionResult CreateUser([FromBody] UserDto user)
+        //{
+        //    var validated = _userService.IsValid(user);
+        //    if (validated)
+        //    {
+        //        try
+        //        {
+        //            var addedUser = _userService.AddUser(user);
+        //            return Ok(addedUser);
+        //        }
+        //        catch
+        //        {
+        //            return StatusCode(500);
 
-            }
-        }
+        //        }
+        //    }
+        //    return BadRequest();
+        //}
 
-        [HttpPut]
-        public IActionResult PutUser(int id, [FromBody] UserDto user)
-        {
-            var validated = _userService.IsValid(user);
-            if (validated)
-            {
-                try
-                {
-                    var changedUser = _userService.UpdateUser(id, user);
+        //[HttpDelete]
+        //public IActionResult DeleteUser(int id)
+        //{
+        //    try
+        //    {
+        //        var user = _userService.DeleteUser(id);
 
-                    if (changedUser != null)
-                    {
-                        return Ok();
-                    }
-                    return BadRequest();
-                }
-                catch
-                {
-                    return StatusCode(500);
+        //        if (user != null)
+        //        {
+        //            return Ok();
+        //        }
+        //        return BadRequest();
+        //    }
+        //    catch
+        //    {
+        //        return StatusCode(500);
 
-                }
-            }
-            return BadRequest();
-        }
+        //    }
+        //}
+
+        //[HttpPut]
+        //public IActionResult PutUser(int id, [FromBody] UserDto user)
+        //{
+        //    var validated = _userService.IsValid(user);
+        //    if (validated)
+        //    {
+        //        try
+        //        {
+        //            var changedUser = _userService.UpdateUser(id, user);
+
+        //            if (changedUser != null)
+        //            {
+        //                return Ok();
+        //            }
+        //            return BadRequest();
+        //        }
+        //        catch
+        //        {
+        //            return StatusCode(500);
+
+        //        }
+        //    }
+        //    return BadRequest();
+        //}
     }
 }
