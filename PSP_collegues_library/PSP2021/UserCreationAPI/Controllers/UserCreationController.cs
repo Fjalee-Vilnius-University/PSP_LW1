@@ -6,12 +6,12 @@ namespace UserCreationAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserCreationController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
         private readonly IUserRepository _userRepository;
 
-        public UserCreationController(IUserService userService, IUserRepository userRepository)
+        public UserController(IUserService userService, IUserRepository userRepository)
         {
             _userService = userService;
             _userRepository = userRepository;
