@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UserCreationApi.BusinessLogic;
 using UserCreationApi.ValidatorAdapters;
 
 namespace UserCreationApi
@@ -25,6 +26,7 @@ namespace UserCreationApi
             services.AddSingleton<IPhoneValidator, PhoneValidatorAdapter>();
             services.AddSingleton<IEmailValidator, EmailValidatorAdapter>();
             services.AddSingleton<IPasswordValidator, PasswordValidatorAdapter>();
+            services.AddTransient<IUserService, UserService>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(Startup));
         }

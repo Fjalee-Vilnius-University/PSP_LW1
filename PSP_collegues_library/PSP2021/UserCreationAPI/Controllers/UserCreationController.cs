@@ -8,7 +8,7 @@ namespace UserCreationAPI.Controllers
     [Route("api/[controller]")]
     public class UserCreationController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
 
         public UserCreationController(IUserService userService)
         {

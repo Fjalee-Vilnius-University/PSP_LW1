@@ -37,7 +37,7 @@ namespace UserCreationApi.BusinessLogic
 
         public User DeleteUser(int id)
         {
-            var user = new User() { UserId = id };
+            var user = new User() { Id = id };
             _dbContext.Users.Attach(user);
 
             var removedUser = _dbContext.Users.Remove(user);
