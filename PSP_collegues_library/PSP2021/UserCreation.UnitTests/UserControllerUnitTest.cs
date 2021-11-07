@@ -91,5 +91,64 @@ namespace UserCreation.UnitTests
             Assert.NotNull(resultStatusCode);
             Assert.Equal(500, resultStatusCode.StatusCode);
         }
+
+        [Theory]
+        [AutoDomainData]
+        public void PostUser_Ok(UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        {
+            userService
+                .Setup(e => e.PostUser(It.IsAny<UserDto>()))
+                .Returns(user);
+
+            userService
+                .Setup(e => e.IsValid(It.IsAny<UserDto>()))
+                .Returns(true);
+
+            var result = sut.PostUser(user);
+            var resultStatusCode = result as OkObjectResult;
+            var content = resultStatusCode.Value;
+
+            Assert.NotNull(resultStatusCode);
+            Assert.Equal(200, resultStatusCode.StatusCode);
+            Assert.Equal(content, user);
+        }
+
+        [Theory]
+        [AutoDomainData]
+        public void PostUser_BadRequest(UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        {
+            userService
+                .Setup(e => e.PostUser(It.IsAny<UserDto>()))
+                .Returns((UserDto)null);
+
+            userService
+                .Setup(e => e.IsValid(It.IsAny<UserDto>()))
+                .Returns(false);
+
+            var result = sut.PostUser(user);
+            var resultStatusCode = result as BadRequestResult;
+
+            Assert.NotNull(resultStatusCode);
+            Assert.Equal(400, resultStatusCode.StatusCode);
+        }
+
+        [Theory]
+        [AutoDomainData]
+        public void PostUser_IntertalError(UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        {
+            userService
+                .Setup(e => e.PostUser(It.IsAny<UserDto>()))
+                .Throws(new Exception());
+
+            userService
+                .Setup(e => e.IsValid(It.IsAny<UserDto>()))
+                .Returns(true);
+
+            var result = sut.PostUser(user);
+            var resultStatusCode = result as StatusCodeResult;
+
+            Assert.NotNull(resultStatusCode);
+            Assert.Equal(500, resultStatusCode.StatusCode);
+        }
     }
 }

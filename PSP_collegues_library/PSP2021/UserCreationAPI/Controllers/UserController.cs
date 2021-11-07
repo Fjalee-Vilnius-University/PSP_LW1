@@ -51,7 +51,7 @@ namespace UserCreationAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateUser([FromBody] UserDto user)
+        public IActionResult PostUser([FromBody] UserDto user)
         {
             var validated = _userService.IsValid(user);
             if (validated)
