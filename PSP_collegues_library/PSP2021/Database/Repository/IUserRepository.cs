@@ -8,7 +8,8 @@ namespace Database.Repository
         User CraeteUser(User user);
         User ReadUser(int id);
         IEnumerable<User> ReadAllUsers();
-        User UpdateUser(User user);
+        User UpdateUser(User userChanges, int id);
+
         User DeleteUser(int id);
     }
 }

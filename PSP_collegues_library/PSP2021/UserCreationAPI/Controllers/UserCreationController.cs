@@ -1,5 +1,4 @@
-﻿using Database.Repository;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using UserCreationApi.BusinessLogic;
 
 namespace UserCreationAPI.Controllers
@@ -9,12 +8,10 @@ namespace UserCreationAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
-        private readonly IUserRepository _userRepository;
 
-        public UserController(IUserService userService, IUserRepository userRepository)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _userRepository = userRepository;
         }
 
         [HttpGet]
@@ -22,7 +19,7 @@ namespace UserCreationAPI.Controllers
         {
             try
             {
-                var users = _userRepository.ReadAllUsers();
+                var users = _userService.GetAllUsers();
                 return Ok(users);
             }
             catch
@@ -37,7 +34,7 @@ namespace UserCreationAPI.Controllers
         {
             try
             {
-                var user = _userRepository.ReadUser(id);
+                var user = _userService.GetUser(id);
 
                 if (user != null)
                 {

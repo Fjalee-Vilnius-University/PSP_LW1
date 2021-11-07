@@ -11,6 +11,7 @@ namespace UserCreationApi
             public AppProfile()
             {
                 CreateMap<UserDto, User>();
+                CreateMap<User, UserDto>();
             }
         }
     }

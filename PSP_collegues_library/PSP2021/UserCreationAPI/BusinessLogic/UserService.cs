@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Database.Entities;
 using Database.Repository;
+using System.Collections.Generic;
 using UserCreationApi.Dto;
 
 namespace UserCreationApi.BusinessLogic
@@ -29,6 +31,38 @@ namespace UserCreationApi.BusinessLogic
             var isValidPassword = _passwordValidator.IsValid(user.Password);
             var isValidPhoneNumber = _phoneValidator.IsValid(user.PhoneNumber);
             return isValidEmail && isValidPassword && isValidPhoneNumber;
+        }
+
+        public UserDto DeleteUser(int id)
+        {
+            var deletedUser = _userRepository.DeleteUser(id);
+            return _mapper.Map<UserDto>(deletedUser);
+        }
+
+        public IEnumerable<UserDto> GetAllUsers()
+        {
+            var allUsers = _userRepository.ReadAllUsers();
+            return _mapper.Map<IEnumerable<UserDto>>(allUsers);
+        }
+
+        public UserDto GetUser(int id)
+        {
+            var user = _userRepository.ReadUser(id);
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public UserDto PostUser(UserDto user)
+        {
+            var userToCreate = _mapper.Map<User>(user);
+            var createdUser = _userRepository.CraeteUser(userToCreate);
+            return _mapper.Map<UserDto>(createdUser);
+        }
+
+        public UserDto PutUser(UserDto userChanges, int id)
+        {
+            var mappedUserChanges = _mapper.Map<User>(userChanges);
+            var updatedUser = _userRepository.UpdateUser(mappedUserChanges, id);
+            return _mapper.Map<UserDto>(updatedUser);
         }
     }
 }

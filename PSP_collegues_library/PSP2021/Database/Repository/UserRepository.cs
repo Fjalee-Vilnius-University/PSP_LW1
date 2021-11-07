@@ -40,20 +40,26 @@ namespace Database.Repository
             return _context.Users.Find(id);
         }
 
-        public User UpdateUser(User newUser)
+        public User UpdateUser(User userChanges, int id)
         {
-            _context.Users.Attach(newUser);
+            var userToUpdate = _context.Users.Find(id);
+            _context.Users.Attach(userToUpdate);
 
-            newUser.Name = newUser.Name;
-            newUser.Surname = newUser.Surname;
-            newUser.PhoneNumber = newUser.PhoneNumber;
-            newUser.Email = newUser.Email;
-            newUser.Address = newUser.Address;
-            newUser.Password = newUser.Password;
+            if (userToUpdate == null)
+            {
+                return null;
+            }
+
+            userToUpdate.Name = userChanges.Name;
+            userToUpdate.Surname = userChanges.Surname;
+            userToUpdate.PhoneNumber = userChanges.PhoneNumber;
+            userToUpdate.Email = userChanges.Email;
+            userToUpdate.Address = userChanges.Address;
+            userToUpdate.Password = userChanges.Password;
 
             _context.SaveChanges();
 
-            return newUser;
+            return userToUpdate;
         }
     }
 }
