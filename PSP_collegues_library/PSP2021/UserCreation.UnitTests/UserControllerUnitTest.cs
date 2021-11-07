@@ -197,5 +197,52 @@ namespace UserCreation.UnitTests
             Assert.NotNull(resultStatusCode);
             Assert.Equal(500, resultStatusCode.StatusCode);
         }
+
+        [Theory]
+        [AutoDomainData]
+        public void PutUser_Ok(int id, UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        {
+            userService
+                .Setup(e => e.PutUser(It.IsAny<UserDto>(), It.IsAny<int>()))
+                .Returns(user);
+
+            var result = sut.PutUser(id, user);
+            var resultStatusCode = result as OkObjectResult;
+            var content = resultStatusCode.Value;
+
+            Assert.NotNull(resultStatusCode);
+            Assert.Equal(200, resultStatusCode.StatusCode);
+            Assert.Equal(content, user);
+        }
+
+        [Theory]
+        [AutoDomainData]
+        public void PutUser_BadRequest(int id, UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        {
+            userService
+                .Setup(e => e.PutUser(It.IsAny<UserDto>(), It.IsAny<int>()))
+                .Returns((UserDto)null);
+
+            var result = sut.PutUser(id, user);
+            var resultStatusCode = result as BadRequestResult;
+
+            Assert.NotNull(resultStatusCode);
+            Assert.Equal(400, resultStatusCode.StatusCode);
+        }
+
+        [Theory]
+        [AutoDomainData]
+        public void PutUser_IntertalError(int id, UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        {
+            userService
+                .Setup(e => e.PutUser(It.IsAny<UserDto>(), It.IsAny<int>()))
+                .Throws(new Exception());
+
+            var result = sut.PutUser(id, user);
+            var resultStatusCode = result as StatusCodeResult;
+
+            Assert.NotNull(resultStatusCode);
+            Assert.Equal(500, resultStatusCode.StatusCode);
+        }
     }
 }
