@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using UserCreationApi.BusinessLogic;
+using UserCreationApi.Dto;
 
 namespace UserCreationAPI.Controllers
 {
@@ -49,25 +50,25 @@ namespace UserCreationAPI.Controllers
             }
         }
 
-        //[HttpPost]
-        //public IActionResult CreateUser([FromBody] UserDto user)
-        //{
-        //    var validated = _userService.IsValid(user);
-        //    if (validated)
-        //    {
-        //        try
-        //        {
-        //            var addedUser = _userService.AddUser(user);
-        //            return Ok(addedUser);
-        //        }
-        //        catch
-        //        {
-        //            return StatusCode(500);
+        [HttpPost]
+        public IActionResult CreateUser([FromBody] UserDto user)
+        {
+            var validated = _userService.IsValid(user);
+            if (validated)
+            {
+                try
+                {
+                    var addedUser = _userService.PostUser(user);
+                    return Ok(addedUser);
+                }
+                catch
+                {
+                    return StatusCode(500);
 
-        //        }
-        //    }
-        //    return BadRequest();
-        //}
+                }
+            }
+            return BadRequest();
+        }
 
         //[HttpDelete]
         //public IActionResult DeleteUser(int id)

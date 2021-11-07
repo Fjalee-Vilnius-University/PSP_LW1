@@ -30,7 +30,7 @@ namespace UserCreationApi.BusinessLogic
             var isValidEmail = _emailValidator.IsValid(user.Email);
             var isValidPassword = _passwordValidator.IsValid(user.Password);
             var isValidPhoneNumber = _phoneValidator.IsValid(user.PhoneNumber);
-            return isValidEmail && isValidPassword && isValidPhoneNumber;
+                return isValidEmail && isValidPassword && isValidPhoneNumber;
         }
 
         public UserDto DeleteUser(int id)
