@@ -31,25 +31,26 @@ namespace UserCreationAPI.Controllers
             }
         }
 
-        //[HttpGet]
-        //public IActionResult GetUser(int id)
-        //{
-        //    try
-        //    {
-        //        var user = _userService.GetUser(id);
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetUser(int id)
+        {
+            try
+            {
+                var user = _userRepository.ReadUser(id);
 
-        //        if (user != null)
-        //        {
-        //            return Ok(user);
-        //        }
-        //        return BadRequest();
-        //    }
-        //    catch
-        //    {
-        //        return StatusCode(500);
+                if (user != null)
+                {
+                    return Ok(user);
+                }
+                return BadRequest();
+            }
+            catch
+            {
+                return StatusCode(500);
 
-        //    }
-        //}
+            }
+        }
 
         //[HttpPost]
         //public IActionResult CreateUser([FromBody] UserDto user)
