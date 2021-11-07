@@ -70,25 +70,26 @@ namespace UserCreationAPI.Controllers
             return BadRequest();
         }
 
-        //[HttpDelete]
-        //public IActionResult DeleteUser(int id)
-        //{
-        //    try
-        //    {
-        //        var user = _userService.DeleteUser(id);
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            try
+            {
+                var deletedUser = _userService.DeleteUser(id);
 
-        //        if (user != null)
-        //        {
-        //            return Ok();
-        //        }
-        //        return BadRequest();
-        //    }
-        //    catch
-        //    {
-        //        return StatusCode(500);
+                if (deletedUser != null)
+                {
+                    return Ok(deletedUser);
+                }
+                return BadRequest();
+            }
+            catch
+            {
+                return StatusCode(500);
 
-        //    }
-        //}
+            }
+        }
 
         //[HttpPut]
         //public IActionResult PutUser(int id, [FromBody] UserDto user)
