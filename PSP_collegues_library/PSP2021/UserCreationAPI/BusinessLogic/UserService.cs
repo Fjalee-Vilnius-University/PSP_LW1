@@ -30,7 +30,7 @@ namespace UserCreationApi.BusinessLogic
             var isValidEmail = _emailValidator.IsValid(user.Email);
             var isValidPassword = _passwordValidator.IsValid(user.Password);
             var isValidPhoneNumber = _phoneValidator.IsValid(user.PhoneNumber);
-                return isValidEmail && isValidPassword && isValidPhoneNumber;
+            return isValidEmail && isValidPassword && isValidPhoneNumber;
         }
 
         public UserDto DeleteUser(int id)
@@ -54,7 +54,7 @@ namespace UserCreationApi.BusinessLogic
         public UserDto PostUser(UserDto user)
         {
             var userToCreate = _mapper.Map<User>(user);
-            var createdUser = _userRepository.CraeteUser(userToCreate);
+            var createdUser = _userRepository.CreateUser(userToCreate);
             return _mapper.Map<UserDto>(createdUser);
         }
 

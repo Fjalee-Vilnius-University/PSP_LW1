@@ -5,7 +5,7 @@ namespace Database.Repository
 {
     public interface IUserRepository
     {
-        User CraeteUser(User user);
+        User CreateUser(User user);
         User ReadUser(int id);
         IEnumerable<User> ReadAllUsers();
         User UpdateUser(User userChanges, int id);

@@ -12,7 +12,7 @@ namespace Database.Repository
             _context = context;
         }
 
-        public User CraeteUser(User user)
+        public User CreateUser(User user)
         {
             _context.Users.Add(user);
             _context.SaveChanges();
