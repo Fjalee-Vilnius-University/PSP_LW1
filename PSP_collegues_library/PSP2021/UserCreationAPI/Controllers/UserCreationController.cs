@@ -91,29 +91,30 @@ namespace UserCreationAPI.Controllers
             }
         }
 
-        //[HttpPut]
-        //public IActionResult PutUser(int id, [FromBody] UserDto user)
-        //{
-        //    var validated = _userService.IsValid(user);
-        //    if (validated)
-        //    {
-        //        try
-        //        {
-        //            var changedUser = _userService.UpdateUser(id, user);
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult PutUser(int id, [FromBody] UserDto user)
+        {
+            var validated = _userService.IsValid(user);
+            if (validated)
+            {
+                try
+                {
+                    var changedUser = _userService.PutUser(user, id);
 
-        //            if (changedUser != null)
-        //            {
-        //                return Ok();
-        //            }
-        //            return BadRequest();
-        //        }
-        //        catch
-        //        {
-        //            return StatusCode(500);
+                    if (changedUser != null)
+                    {
+                        return Ok(changedUser);
+                    }
+                    return BadRequest();
+                }
+                catch
+                {
+                    return StatusCode(500);
 
-        //        }
-        //    }
-        //    return BadRequest();
-        //}
+                }
+            }
+            return BadRequest();
+        }
     }
 }

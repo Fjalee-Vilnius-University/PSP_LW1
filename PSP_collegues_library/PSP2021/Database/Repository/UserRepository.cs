@@ -43,13 +43,13 @@ namespace Database.Repository
         public User UpdateUser(User userChanges, int id)
         {
             var userToUpdate = _context.Users.Find(id);
-            _context.Users.Attach(userToUpdate);
 
             if (userToUpdate == null)
             {
                 return null;
             }
 
+            _context.Users.Attach(userToUpdate);
             userToUpdate.Name = userChanges.Name;
             userToUpdate.Surname = userChanges.Surname;
             userToUpdate.PhoneNumber = userChanges.PhoneNumber;
