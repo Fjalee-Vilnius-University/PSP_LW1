@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PSP_LW1;
 
@@ -55,7 +56,6 @@ namespace PSP_LW1_UnitTests
             var defaultPrefixPhone = "+370" + _correctPhoneWithoutPrefix;
 
             var result = _passwordChecker.ChangeShortcutPrefixToDefault(shortcutPrefixPhone);
-
             Assert.IsTrue(defaultPrefixPhone == result);
         }
 

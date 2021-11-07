@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace PSP_LW1
 {
@@ -14,7 +15,47 @@ namespace PSP_LW1
         }
         public bool IsValid(string str)
         {
+            if (str.Length < _minLength)
+            {
+                return false;
+            }
+
+            bool hasUpper = false;
+            
+            foreach (var c in str)
+            {
+                if (Char.IsUpper(c))
+                {
+                    hasUpper = true;
+                    break;
+                }
+            }
+
+            if (!hasUpper)
+            {
+                return false;
+            }
+
+            if (!AnySpecialCharacters(str))
+            {
+                return false;
+            }
+            
+            
             return true;
+        }
+
+        private bool AnySpecialCharacters(string password)
+        {
+            foreach (var invalid in _allowedSpecialCharacters)
+            {
+                if (password.Contains(invalid))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

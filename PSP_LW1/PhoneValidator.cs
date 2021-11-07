@@ -1,4 +1,7 @@
-﻿namespace PSP_LW1
+﻿using System;
+using System.Linq;
+
+namespace PSP_LW1
 {
     public class PhoneValidator
     {
@@ -15,12 +18,38 @@
 
         public bool IsValid(string phone)
         {
+            if (phone.Length <= _lenWithoutPrefix)
+            {
+                return false;
+            }
+            
+            if (phone.Any(Char.IsLetter))
+            {
+                return false;
+            }
+
+            if (phone.Contains(_defaultPrefix))
+            {
+                return false;
+            }
+
+            if (phone[0].ToString() == _shortcutPrefix)
+            {
+                return false;
+            }
+            
             return true;
         }
 
         public string ChangeShortcutPrefixToDefault(string phone)
         {
-            return "";
+            var newPhone = "";
+            if (phone[0].ToString() == _shortcutPrefix)
+            {
+                newPhone = phone.Remove(0, 1).Insert(0, _defaultPrefix);
+            }
+
+            return newPhone;
         }
     }
 }
