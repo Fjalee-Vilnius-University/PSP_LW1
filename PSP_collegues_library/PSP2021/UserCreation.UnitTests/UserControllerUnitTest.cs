@@ -47,13 +47,13 @@ namespace UserCreation.UnitTests
 
         [Theory]
         [AutoDomainData]
-        public void GetUser_Ok(UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        public void GetUser_Ok(int id, UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
         {
             userService
                 .Setup(e => e.GetUser(It.IsAny<int>()))
                 .Returns(user);
 
-            var result = sut.GetUser(It.IsAny<int>());
+            var result = sut.GetUser(id);
             var resultStatusCode = result as OkObjectResult;
             var content = resultStatusCode.Value;
 
@@ -64,13 +64,13 @@ namespace UserCreation.UnitTests
 
         [Theory]
         [AutoDomainData]
-        public void GetUser_BadRequest([Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        public void GetUser_BadRequest(int id, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
         {
             userService
                 .Setup(e => e.GetUser(It.IsAny<int>()))
                 .Returns((UserDto)null);
 
-            var result = sut.GetUser(It.IsAny<int>());
+            var result = sut.GetUser(id);
             var resultStatusCode = result as BadRequestResult;
 
             Assert.NotNull(resultStatusCode);
@@ -79,13 +79,13 @@ namespace UserCreation.UnitTests
 
         [Theory]
         [AutoDomainData]
-        public void GetUser_IntertalError([Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        public void GetUser_IntertalError(int id, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
         {
             userService
                 .Setup(e => e.GetUser(It.IsAny<int>()))
                 .Throws(new Exception());
 
-            var result = sut.GetUser(It.IsAny<int>());
+            var result = sut.GetUser(id);
             var resultStatusCode = result as StatusCodeResult;
 
             Assert.NotNull(resultStatusCode);
@@ -151,16 +151,15 @@ namespace UserCreation.UnitTests
             Assert.Equal(500, resultStatusCode.StatusCode);
         }
 
-
         [Theory]
         [AutoDomainData]
-        public void DeleteUser_Ok(UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        public void DeleteUser_Ok(int id, UserDto user, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
         {
             userService
                 .Setup(e => e.DeleteUser(It.IsAny<int>()))
                 .Returns(user);
 
-            var result = sut.DeleteUser(It.IsAny<int>());
+            var result = sut.DeleteUser(id);
             var resultStatusCode = result as OkObjectResult;
             var content = resultStatusCode.Value;
 
@@ -171,13 +170,13 @@ namespace UserCreation.UnitTests
 
         [Theory]
         [AutoDomainData]
-        public void DeleteUser_BadRequest([Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        public void DeleteUser_BadRequest(int id, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
         {
             userService
                 .Setup(e => e.DeleteUser(It.IsAny<int>()))
                 .Returns((UserDto)null);
 
-            var result = sut.DeleteUser(It.IsAny<int>());
+            var result = sut.DeleteUser(id);
             var resultStatusCode = result as BadRequestResult;
 
             Assert.NotNull(resultStatusCode);
@@ -186,13 +185,13 @@ namespace UserCreation.UnitTests
 
         [Theory]
         [AutoDomainData]
-        public void DeleteUser_IntertalError([Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
+        public void DeleteUser_IntertalError(int id, [Frozen] Mock<IUserService> userService, [Greedy] UserController sut)
         {
             userService
                 .Setup(e => e.DeleteUser(It.IsAny<int>()))
                 .Throws(new Exception());
 
-            var result = sut.DeleteUser(It.IsAny<int>());
+            var result = sut.DeleteUser(id);
             var resultStatusCode = result as StatusCodeResult;
 
             Assert.NotNull(resultStatusCode);
